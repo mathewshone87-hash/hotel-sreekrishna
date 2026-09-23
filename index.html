@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Hotel Sreekrishna | Pooppara</title>
+
+<style>
+:root {
+    --green: #173f2b;
+    --gold: #e8b85d;
+    --cream: #fff9ef;
+    --dark: #17251c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+}
+
+header {
+    background: var(--green);
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--gold);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--gold);
+}
+
+.hero {
+    min-height: 490px;
+    background:
+        linear-gradient(90deg, rgba(10,30,18,.88), rgba(10,30,18,.35)),
+        url("https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1800&q=85")
+        center/cover;
+    display: flex;
+    align-items: center;
+    padding: 70px 9%;
+    color: white;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.hero small {
+    color: var(--gold);
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 76px);
+    margin: 20px 0;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #f1eee7;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--gold);
+    color: #1c2a1e;
+    padding: 14px 25px;
+    margin-top: 25px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #ffd783;
+}
+
+section {
+    padding: 65px 8%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title small {
+    color: #a87522;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    font-size: 35px;
+    margin-top: 10px;
+    color: var(--green);
+}
+
+.about {
+    text-align: center;
+    max-width: 850px;
+    margin: auto;
+    line-height: 1.9;
+    font-size: 17px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 35px;
+}
+
+.info-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    border: 1px solid #eee1c9;
+    text-align: center;
+}
+
+.info-card h3 {
+    color: var(--green);
+    margin-bottom: 12px;
+}
+
+.info-card p {
+    line-height: 1.8;
+    color: #555;
+}
+
+.phone {
+    color: var(--green);
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+#menu {
+    background: #f3ecdf;
+}
+
+.menu-intro {
+    text-align: center;
+    margin: -15px auto 25px;
+    color: #655d50;
+    line-height: 1.7;
+}
+
+.search-box {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    padding: 15px;
+    border: 1px solid #d5c6ac;
+    border-radius: 8px;
+    font-size: 16px;
+    outline-color: var(--green);
+}
+
+.category-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 35px;
+}
+
+.category-btn {
+    background: white;
+    border: 1px solid #d9c9ae;
+    padding: 10px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.category-btn.active,
+.category-btn:hover {
+    background: var(--green);
+    color: white;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+}
+
+.food-card {
+    background: white;
+    border: 1px solid #e9dfcf;
+    border-radius: 9px;
+    padding: 20px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.food-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 22px #00000012;
+    border-color: var(--gold);
+}
+
+.food-card h3 {
+    color: var(--green);
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.food-card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.food-card span {
+    display: inline-block;
+    margin-top: 12px;
+    color: #a87522;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.no-results {
+    text-align: center;
+    padding: 30px;
+    grid-column: 1/-1;
+}
+
+.hours {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px #00000008;
+}
+
+.hour-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.hour-row:last-child {
+    border: none;
+}
+
+footer {
+    background: #10291c;
+    color: white;
+    text-align: center;
+    padding: 35px 15px;
+    line-height: 2;
+}
+
+footer a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+/* Food description popup */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000000a6;
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: var(--cream);
+    max-width: 450px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 12px;
+    position: relative;
+    animation: appear .2s ease;
+}
+
+@keyframes appear {
+    from { transform: translateY(15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-content h2 {
+    color: var(--green);
+    margin: 15px 0;
+}
+
+.modal-content p {
+    line-height: 1.8;
+    color: #555;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+@media(max-width:600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav a {
+        display: inline-block;
+        margin: 6px;
+    }
+
+    .hero {
+        min-height: 420px;
+    }
+
+    section {
+        padding: 45px 5%;
+    }
+
+    .hour-row {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">HOTEL SREEKRISHNA</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#hours">Hours</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HOME -->
+
+<div class="hero" id="home">
+    <div class="hero-content">
+        <small>WELCOME TO HOTEL SREEKRISHNA</small>
+
+        <h1>Authentic Kerala<br>Flavours</h1>
+
+        <p>
+            Traditional village-style food, delicious Kerala meals
+            and your favourite dishes — served with warmth in Pooppara.
+        </p>
+
+        <a href="#menu" class="btn">EXPLORE OUR MENU →</a>
+        <br>
+
+        <a href="tel:9495255855" class="btn">
+            ☎ CALL HOTEL
+        </a>
+    </div>
+</div>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-title">
+        <small>OUR STORY</small>
+        <h2>Welcome to Hotel Sreekrishna</h2>
+    </div>
+
+    <div class="about">
+        <p>
+            Hotel Sreekrishna is a casual and economical eatery
+            located in Kavumbhakam, Pooppara, Kerala (685619).
+            We serve traditional Kerala-style village foods,
+            tasty breakfast items and a variety of meals for
+            families, travellers and food lovers.
+        </p>
+
+        <p style="margin-top:15px">
+            From soft appam and puttu to Kerala meals, biriyani,
+            chicken specialities and refreshing drinks,
+            there's something for everyone to enjoy.
+        </p>
+    </div>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <h3>📍 Our Location</h3>
+            <p>Kavumbhakam<br>Pooppara, Kerala - 685619</p>
+        </div>
+
+        <div class="info-card">
+            <h3>🍛 Delicious Food</h3>
+            <p>Kerala meals, breakfast, biriyani, chicken,
+            vegetarian dishes and beverages.</p>
+        </div>
+
+        <div class="info-card">
+            <h3>☎ Contact Us</h3>
+            <a class="phone" href="tel:9495255855">9495255855</a>
+            <p>Tap the number to call us.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- MENU -->
+
+<section id="menu">
+
+    <div class="section-title">
+        <small>FRESH & DELICIOUS</small>
+        <h2>Our Food Menu</h2>
+    </div>
+
+    <p class="menu-intro">
+        Explore our dishes. Click any food item to discover
+        its description.<br>
+        Search for your favourite food below.
+    </p>
+
+    <input
+        type="text"
+        id="search"
+        class="search-box"
+        placeholder="🔍 Search food items..."
+        oninput="renderMenu()"
+    >
+
+    <div class="category-nav" id="categoryNav"></div>
+
+    <div class="menu-grid" id="menuGrid"></div>
+
+</section>
+
+<!-- HOURS -->
+
+<section id="hours">
+
+    <div class="section-title">
+        <small>VISIT US</small>
+        <h2>Operating Hours</h2>
+    </div>
+
+    <div class="hours">
+
+        <div class="hour-row">
+            <strong>Monday</strong>
+            <span>7:00 AM – 12:00 AM</span>
+        </div>
+
+        <div class="hour-row">
+            <strong>Tuesday</strong>
+            <span>12:00 AM – 11:00 PM</span>
+        </div>
+
+        <div class="hour-row">
+            <strong>Wednesday</strong>
+            <span>7:00 AM – 11:30 PM</span>
+        </div>
+
+        <div class="hour-row">
+            <strong>Thursday</strong>
+            <span>7:00 AM – 11:00 PM</span>
+        </div>
+
+        <div class="hour-row">
+            <strong>Friday</strong>
+            <span>7:00 AM – 11:00 PM</span>
+        </div>
+
+        <div class="hour-row">
+            <strong>Saturday</strong>
+            <span>7:00 AM – 11:00 PM</span>
+        </div>
+
+        <div class="hour-row">
+            <strong>Sunday</strong>
+            <span>7:00 AM – 11:00 PM</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="section-title">
+        <small>COME VISIT US</small>
+        <h2>Contact Hotel Sreekrishna</h2>
+    </div>
+
+    <div class="about">
+        <p>📍 Kavumbhakam, Pooppara, Kerala - 685619</p>
+
+        <p style="margin-top:12px">
+            ☎ <a class="phone" href="tel:9495255855">
+                9495255855
+            </a>
+        </p>
+
+        <a href="tel:9495255855" class="btn">
+            CALL HOTEL NOW
+        </a>
+    </div>
+
+</section>
+
+<footer>
+    <h3>HOTEL SREEKRISHNA</h3>
+    Traditional Kerala Food • Pooppara, Kerala
+
+    <p>
+        Phone:
+        <a href="tel:9495255855">9495255855</a>
+    </p>
+
+    <p>© 2026 Hotel Sreekrishna. All Rights Reserved.</p>
+</footer>
+
+<!-- FOOD DESCRIPTION POPUP -->
+
+<div class="modal" id="foodModal" onclick="outsideClose(event)">
+    <div class="modal-content">
+
+        <button class="close" onclick="closeModal()">×</button>
+
+        <div style="font-size:35px">🍽️</div>
+
+        <h2 id="modalTitle"></h2>
+
+        <p id="modalCategory"
+           style="color:#a87522;font-weight:bold"></p>
+
+        <p id="modalDescription"></p>
+
+        <a href="tel:9495255855" class="btn">
+            ☎ Call to Enquire
+        </a>
+
+    </div>
+</div>
+
+<script>
+
+// =====================================
+// HOTEL SREEKRISHNA MENU
+// =====================================
+
+const menu = {
+
+"Hot Drinks": [
+"Tea", "Coffee", "Black Coffee", "Bru Coffee",
+"Masala Tea", "Green Tea", "Ginger Tea",
+"Kashmiri Kawah", "Milk", "Boost", "Horlicks"
+],
+
+"Chicken": [
+"Ginger Chicken", "Chicken Curry", "Chicken Fry",
+"Chicken 65", "Chilli Chicken", "Pepper Chicken",
+"Garlic Chicken", "Chicken Kondattom",
+"Chicken Roast", "Kadai Chicken", "Butter Chicken"
+],
+
+"Breakfast": [
+"Kerala Porotta", "Appam", "Chappathi", "Idli",
+"Ediyappam", "Ghee Roast", "Plain Dosa",
+"Kappa", "Puttu", "Poori Masala"
+],
+
+"Veg": [
+"Chilli Gobi", "Gobi Manchurian", "Gobi 65",
+"Paneer Butter Masala", "Paneer Masala",
+"Chilli Paneer", "Pepper Paneer",
+"Mushroom Masala", "Chilli Mushroom"
+],
+
+"Lunch": [
+"Kerala Meals", "Fish Curry Meals",
+"Mutton Biriyani", "Chicken Biriyani",
+"Fried Rice", "Noodles"
+],
+
+"Al Faham": [
+"Al Faham", "Peri Peri Al Faham",
+"Black Pepper Al Faham"
+],
+
+"Chinese Foods (Schezwan)": [
+"Egg Fried Rice", "Veg Fried Rice",
+"Mushroom Fried Rice", "Chicken Fried Rice",
+"Mixed Fried Rice", "Egg Noodles",
+"Veg Noodles", "Mushroom Noodles",
+"Chicken Noodles", "Mixed Noodles"
+],
+
+"Chinese Chicken Curry": [
+"Chicken Manchurian", "Chicken Butter Masala",
+"Chilli Chicken (Dry Fry)", "Pepper Chicken (Dry)",
+"Schezwan Chicken", "Chicken Kondattom",
+"Ginger Chicken", "Garlic Chicken",
+"Kadai Chicken", "Butter Chicken"
+],
+
+"Shakes": [
+"Vanilla", "Chocolate", "Butterscotch",
+"Pista", "Strawberry", "Sharjah",
+"Cold Coffee", "Cold Boost", "Cold Horlicks",
+"Dry Fruits"
+],
+
+"Meals": [
+"Chicken Biriyani", "Egg Biriyani",
+"Mutton Biriyani", "Fish Curry Meals",
+"Kappa Biriyani"
+],
+
+"Lime": [
+"Fresh Lime", "Grape Lime", "Mint Lime",
+"Pineapple Lime", "Lime with Honey",
+"Ginger Lime", "Mango Lime",
+"Elachi Lime", "Lime Soda", "Mint Lime Soda"
+],
+
+"Lassi": [
+"Plain Lassi", "Mango Lassi", "Pineapple Lassi"
+],
+
+"Mojito": [
+"Blue Lagoon"
+],
+
+"Fresh Juice": [
+"Apple", "Pineapple", "Watermelon",
+"Pomegranate", "Orange", "Muskmelon",
+"Mango", "Carrot", "Beetroot"
+],
+
+"Others": [
+"Chicken 65", "Dragon Chicken"
+]
+
+};
+
+// =====================================
+// FOOD DESCRIPTIONS
+// =====================================
+
+function getDescription(food, category) {
+
+    const name = food.toLowerCase();
+
+    if (name.includes("biriyani")) {
+        return `${food} is a flavourful rice dish prepared with aromatic spices and delicious ingredients. A satisfying choice for a hearty meal.`;
+    }
+
+    if (name.includes("porotta")) {
+        return "Kerala-style layered flatbread, a popular favourite to enjoy with curry.";
+    }
+
+    if (name.includes("appam")) {
+        return "A traditional Kerala rice pancake with a soft centre and delicate edges. Enjoy it with curry.";
+    }
+
+    if (name.includes("puttu")) {
+        return "A traditional Kerala steamed rice-flour dish, commonly enjoyed for breakfast.";
+    }
+
+    if (name.includes("idli")) {
+        return "Soft, steamed South Indian rice cakes, traditionally served as a breakfast favourite.";
+    }
+
+    if (name.includes("dosa") || name.includes("roast")) {
+        return "A South Indian speciality, prepared on a hot griddle and served as a tasty meal or breakfast.";
+    }
+
+    if (name.includes("chicken") || name.includes("faham")) {
+        return `${food} is a delicious chicken speciality prepared with flavourful seasoning and spices.`;
+    }
+
+    if (
+        name.includes("tea") || name.includes("coffee") ||
+        name.includes("boost") || name.includes("horlicks") ||
+        name === "milk"
+    ) {
+        return "A comforting drink, perfect for a refreshing break or to enjoy alongside your favourite food.";
+    }
+
+    if (
+        name.includes("juice") || name.includes("lime") ||
+        name.includes("lassi") || name.includes("mojito") ||
+        name.includes("lagoon") || name.includes("soda")
+    ) {
+        return `${food} is a refreshing beverage, perfect for enjoying with a meal or cooling down.`;
+    }
+
+    if (name.includes("fried rice") || name.includes("noodles")) {
+        return `${food} is a tasty Indo-Chinese favourite, prepared with flavourful ingredients and seasonings.`;
+    }
+
+    if (
+        name.includes("paneer") || name.includes("gobi") ||
+        name.includes("mushroom")
+    ) {
+        return `${food} is a vegetarian speciality made with delicious ingredients and aromatic spices.`;
+    }
+
+    if (name.includes("meals") || name.includes("fish curry")) {
+        return `${food} is a satisfying meal inspired by traditional Kerala flavours and homestyle cooking.`;
+    }
+
+    return `${food} is one of the menu options at Hotel Sreekrishna. Contact us to learn more about this dish and its availability.`;
+}
+
+// =====================================
+// MENU DISPLAY
+// =====================================
+
+let activeCategory = "All";
+
+const categoryNav = document.getElementById("categoryNav");
+const menuGrid = document.getElementById("menuGrid");
+
+function createCategoryButtons() {
+
+    const categories = ["All", ...Object.keys(menu)];
+
+    categoryNav.innerHTML = categories.map(category => `
+        <button
+            class="category-btn ${category === activeCategory ? "active" : ""}"
+            onclick="selectCategory('${category}')">
+            ${category}
+        </button>
+    `).join("");
+}
+
+function selectCategory(category) {
+    activeCategory = category;
+    createCategoryButtons();
+    renderMenu();
+}
+
+function renderMenu() {
+
+    const searchValue =
+        document.getElementById("search").value.toLowerCase();
+
+    menuGrid.innerHTML = "";
+
+    let found = 0;
+
+    Object.keys(menu).forEach(category => {
+
+        if (activeCategory !== "All" &&
+            category !== activeCategory) return;
+
+        menu[category].forEach(food => {
+
+            if (!food.toLowerCase().includes(searchValue) &&
+                !category.toLowerCase().includes(searchValue)) return;
+
+            found++;
+
+            const card = document.createElement("div");
+            card.className = "food-card";
+
+            const title = document.createElement("h3");
+            title.textContent = "🍽️ " + food;
+
+            const description = document.createElement("p");
+            description.textContent = "Tap to view food description";
+
+            const label = document.createElement("span");
+            label.textContent = category + "  →";
+
+            card.append(title, description, label);
+
+            card.addEventListener("click", () => {
+                showFood(food, category);
+            });
+
+            menuGrid.appendChild(card);
+        });
+    });
+
+    if (found === 0) {
+        menuGrid.innerHTML =
+            '<div class="no-results">No food items found.</div>';
+    }
+}
+
+// =====================================
+// FOOD POPUP
+// =====================================
+
+function showFood(food, category) {
+
+    document.getElementById("modalTitle").textContent = food;
+
+    document.getElementById("modalCategory").textContent =
+        category;
+
+    document.getElementById("modalDescription").textContent =
+        getDescription(food, category);
+
+    document.getElementById("foodModal").style.display = "flex";
+}
+
+function closeModal() {
+    document.getElementById("foodModal").style.display = "none";
+}
+
+function outsideClose(event) {
+    if (event.target.id === "foodModal") {
+        closeModal();
+    }
+}
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeModal();
+});
+
+// Start website
+
+createCategoryButtons();
+renderMenu();
+
+</script>
+
+</body>
+</html>
